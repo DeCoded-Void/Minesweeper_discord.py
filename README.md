@@ -11,4 +11,5 @@ The file in this repository is a cog and can be loaded into an existing bot.
 
 ### Example:
 > !minesweeper 9 9 15
+
 ![Screenshot](Example.PNG)
