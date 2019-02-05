@@ -7,7 +7,7 @@ The file in this repository is a cog and can be loaded into an existing bot.
 * [discord.py rewrite](https://github.com/Rapptz/discord.py/tree/rewrite/)
 
 ### Syntax:
-> [Prefix]minesweeper <columns> <rows> <bombs>
+> [Prefix]minesweeper [columns] [rows] [bombs]
 
 ### Example:
 > !minesweeper 9 9 15
