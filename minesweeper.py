@@ -3,7 +3,7 @@ from discord.ext import commands
 import random
 
 # Default error message
-errortxt = ('That is not formatted properly or a valid positive integers wasn\'t used, ',
+errortxt = ('That is not formatted properly or valid positive integers weren\'t used, ',
             'the proper format is:\n`[Prefix]minesweeper <columns> <rows> <bombs>`\n\n',
             'You can give me nothing for 8 columns, rows, and bombs.')
 errortxt = ''.join(errortxt)
