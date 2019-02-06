@@ -34,7 +34,7 @@ class minesweeper:
             await ctx.send('The limit for the columns and rows are 13 due to discord limits...')
             return
         if columns < 1 or rows < 1 or bombs < 1:
-            await ctx.send('The provided numbers cannot be negative...')
+            await ctx.send('The provided numbers cannot be zero or negative...')
             return
         if bombs + 1 > columns * rows:
             await ctx.send(':boom:**BOOM**, you have more bombs than spaces on the grid or you attempted to make all of the spaces bombs!')
