@@ -2,10 +2,9 @@ import discord
 from discord.ext import commands
 import random
 
-# Default error message
 errortxt = ('That is not formatted properly or valid positive integers weren\'t used, ',
             'the proper format is:\n`[Prefix]minesweeper <columns> <rows> <bombs>`\n\n',
-            'You can give me nothing for 8 columns, rows, and bombs.')
+            'You can give me nothing for random columns, rows, and bombs.')
 errortxt = ''.join(errortxt)
 
 class minesweeper:
@@ -14,15 +13,20 @@ class minesweeper:
 
     @commands.command()
     async def minesweeper(self, ctx, columns = None, rows = None, bombs = None):
-        # Internal error handling
         if columns is None or rows is None and bombs is None:
             if columns is not None or rows is not None or bombs is not None:
                 await ctx.send(errortxt)
                 return
             else:
-                columns = 8
-                rows = 8
-                bombs = 8
+                # Gives a random range of columns and rows from 4-13 if no arguments are given
+                # The amount of bombs depends on a random range from 5 to this formula:
+                # ((columns * rows) - 1) / 2.5
+                # This is to make sure the percentages of bombs at a given random board isn't too high
+                columns = random.randint(4,13)
+                rows = random.randint(4,13)
+                bombs = columns * rows - 1
+                bombs = bombs / 2.5
+                bombs = round(random.randint(5, round(bombs)))
         try:
             columns = int(columns)
             rows = int(rows)
@@ -103,18 +107,17 @@ class minesweeper:
         percentage = columns * rows
         percentage = bombs / percentage
         percentage = 100 * percentage
-        percentage = round (percentage, 2)
+        percentage = round(percentage, 2)
 
         embed = discord.Embed(title='\U0001F642 Minesweeper \U0001F635', color=0xC0C0C0)
         embed.add_field(name='Columns:', value=columns, inline=True)
         embed.add_field(name='Rows:', value=rows, inline=True)
         embed.add_field(name='Total Spaces:', value=columns * rows, inline=True)
         embed.add_field(name='\U0001F4A3 Count:', value=bombs, inline=True)
-        embed.add_field(name='\U0001F4A3 Percentage:', value=f'{percentage}%', inline=True)
+        embed.add_field(name='\U0001F4A3 Chance:', value=f'{percentage}%', inline=True)
         embed.add_field(name='Requested by:', value=ctx.author.display_name, inline=True)
         await ctx.send(content=final, embed=embed)
 
-    # If internal error handling fails
     @minesweeper.error
     async def minesweeper_error(self, ctx, error):
         await ctx.send(errortxt)
