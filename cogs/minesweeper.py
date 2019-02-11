@@ -114,9 +114,9 @@ class minesweeper:
         embed.add_field(name='Rows:', value=rows, inline=True)
         embed.add_field(name='Total Spaces:', value=columns * rows, inline=True)
         embed.add_field(name='\U0001F4A3 Count:', value=bombs, inline=True)
-        embed.add_field(name='\U0001F4A3 Chance:', value=f'{percentage}%', inline=True)
+        embed.add_field(name='\U0001F4A3 Percentage:', value=f'{percentage}%', inline=True)
         embed.add_field(name='Requested by:', value=ctx.author.display_name, inline=True)
-        await ctx.send(content=final, embed=embed)
+        await ctx.send(content=f'\U0000FEFF\n{final}', embed=embed)
 
     @minesweeper.error
     async def minesweeper_error(self, ctx, error):
