@@ -7,7 +7,7 @@ errortxt = ('That is not formatted properly or valid positive integers weren\'t 
             'You can give me nothing for random columns, rows, and bombs.')
 errortxt = ''.join(errortxt)
 
-class minesweeper:
+class minesweeper(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
